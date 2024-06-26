@@ -1,0 +1,4 @@
+from recog_generator.generators.from_dict import GeneratorFromDict
+from recog_generator.generators.from_random import GeneratorFromRandom
+from recog_generator.generators.from_strings import GeneratorFromStrings
+from recog_generator.generators.from_wikipedia import GeneratorFromWikipedia

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FictionBook xmlns="http://www.gribuser.ru/xml/fictionbook/2.0" xmlns:xlink="http://www.w3.org/1999/xlink">
+<description>
+<title-info>
+<author>
+<first-name>{name_author}</first-name>
+<last-name>{surname_author}</last-name>
+</author>
+<book-title>{title}</book-title>
+<annotation>
+<p>Многие хотят стать программистом, и также многие не знают, как это сделать, не знают,
+в каком направлении двигаться и что конкретно нужно делать, поэтому я хочу поделиться с Вами
+своим опытом становления программистом и результатом анализа этой темы. В этой книге
+представлены универсальные практические советы, рассмотрен конкретный план действий,
+который поможет Вам стать программистом. В ней рассмотрено всё, что нужно делать для того,
+чтобы стать полноценным разработчиком программного обеспечения. Книга не научит
+Вас программированию, но после ее прочтения Вы будете четко знать, как двигаться дальше,
+если Вы хотите стать программистом.</p>
+<p>Виталий Трунин – ведущий специалист в области разработки баз данных и программирования
+на языке T-SQL, основатель, разработчик и администратор сайта Info-Comp.ru.</p>
+{annotation}
+</annotation>
+<coverpage>
+<image xlink:href="#cover.jpg" />
+</coverpage>
+<lang>{lang}</lang>
+</title-info>
+<document-info>
+<author>
+<first-name>{name_author}</first-name>
+<last-name>{surname_author}</last-name>
+</author>
+<id>20181105110000</id>
+<version>1.0</version>
+</document-info>
+<publish-info>
+<book-name>{title}</book-name>
+</publish-info>
+</description>

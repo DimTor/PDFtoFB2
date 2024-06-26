@@ -1,0 +1,15 @@
+Collecting wikipedia
+  Using cached wikipedia-1.4.0-py3-none-any.whl
+Collecting beautifulsoup4 (from wikipedia)
+  Using cached beautifulsoup4-4.12.3-py3-none-any.whl.metadata (3.8 kB)
+Requirement already satisfied: requests<3.0.0,>=2.0.0 in /home/tor/anaconda3/envs/all_inside/lib/python3.8/site-packages (from wikipedia) (2.28.2)
+Requirement already satisfied: charset-normalizer<4,>=2 in /home/tor/anaconda3/envs/all_inside/lib/python3.8/site-packages (from requests<3.0.0,>=2.0.0->wikipedia) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in /home/tor/anaconda3/envs/all_inside/lib/python3.8/site-packages (from requests<3.0.0,>=2.0.0->wikipedia) (3.7)
+Requirement already satisfied: urllib3<1.27,>=1.21.1 in /home/tor/anaconda3/envs/all_inside/lib/python3.8/site-packages (from requests<3.0.0,>=2.0.0->wikipedia) (1.26.18)
+Requirement already satisfied: certifi>=2017.4.17 in /home/tor/anaconda3/envs/all_inside/lib/python3.8/site-packages (from requests<3.0.0,>=2.0.0->wikipedia) (2024.2.2)
+Collecting soupsieve>1.2 (from beautifulsoup4->wikipedia)
+  Using cached soupsieve-2.5-py3-none-any.whl.metadata (4.7 kB)
+Using cached beautifulsoup4-4.12.3-py3-none-any.whl (147 kB)
+Using cached soupsieve-2.5-py3-none-any.whl (36 kB)
+Installing collected packages: soupsieve, beautifulsoup4, wikipedia
+Successfully installed beautifulsoup4-4.12.3 soupsieve-2.5 wikipedia-1.4.0

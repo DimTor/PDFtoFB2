@@ -1,0 +1,21 @@
+{
+  "categories": [
+    {
+      "id": 0,
+      "name": "Add_info"
+    },
+    {
+      "id": 1,
+      "name": "Image"
+    },
+    {
+      "id": 2,
+      "name": "Text"
+    }
+  ],
+  "info": {
+    "year": 2024,
+    "version": "1.0",
+    "contributor": "Label Studio"
+  }
+}
