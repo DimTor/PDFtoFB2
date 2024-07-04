@@ -1,6 +1,6 @@
 import os
 import base64
-
+from PIL import Image
 
 class FB2:
     def __init__(self, title='пробная книга', name='Дмитрий', surname='Торотенков', lang='ru', annotation='', cover='117_90_Logo-MEPHI.jpg'):
@@ -31,6 +31,16 @@ class FB2:
         with open('My_testbook.txt', 'a') as test_book:
             content = f'<image xlink:href="#{self.imgs_id}.jpg" />'
             test_book.write(content)
+        im = Image.open(image_path)
+        im = im.convert("L")
+        w, h = im.size
+        if w > 758:
+            ratio = 740 / w
+            im = im.resize((int(w * ratio), int(h * ratio)))
+        elif h > 1024:
+            ratio = 980 / h
+            im = im.resize((int(w * ratio), int(h * ratio)))
+        im.save(image_path)
         image = open(image_path, 'rb').read()
         with open('binary_txt.txt', 'a') as test_book:
             content = f'<binary id="{self.imgs_id}.jpg" content-type="image/jpeg">{base64.encodebytes(image).decode()}</binary>'

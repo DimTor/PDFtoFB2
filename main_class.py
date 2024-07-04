@@ -8,17 +8,22 @@ import string
 from create_fb2 import FB2
 import config
 from dataloader import Loader
-
+from spellchecker import SpellChecker
+from modern_pdf import ModernPdf
 class MainClass:
-    def __init__(self):
+    def __init__(self, fb2_object):
         self.YOLOMain = YOLOClass(config.yolo_weight)
        # self.YOLOBBox = YOLOBoxClass(yolo_box_weight)
         self.BERT = BERTClass(config.bert_fold)
         self.count = 21
+        self.sp = SpellChecker(language='ru')
         self.string = ''
-        self.FB2 = FB2()
+        self.FB2 = fb2_object
 
     def spell_check(self, word, sentense):
+        w = self.sp.correction(word)
+        if w:
+            return w
         if len(word) < 4 or not all(s.lower() in 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя' for s in word) or sentense.count(word) > 1:
             return word
         else:
@@ -39,7 +44,7 @@ class MainClass:
                     x, y, w, h = boxes.xywh.numpy()[n]
                     im_crop = im.crop((x - w / 2, y - h / 2, x + w / 2, y + h / 2))
                     im_crop.save('out.jpg')
-                    data_word = pytesseract.image_to_data('out.jpg', lang='rus+eng', output_type=pytesseract.Output.DICT)
+                    data_word = pytesseract.image_to_data('out.jpg', lang='rus', output_type=pytesseract.Output.DICT)
                     new_mass_word = []
                     new_mass_word2 = []
 
@@ -65,7 +70,7 @@ class MainClass:
                         elif j:
                             number += 1
                             self.string += j
-                            if data_word['conf'][num] <= 65:
+                            if data_word['conf'][num] <= 90 and 0:
                                 if self.string[-1] in '!?,.:;':
                                     punkt = self.string[-1]
                                     self.string = self.string[:-1]
@@ -85,6 +90,10 @@ class MainClass:
                     text = ' '.join(new_mass_word2)
                     text = text.replace('<', '')
                     text = text.replace('>', '')
+                    text = text.replace('&', '')
+                    text = text.replace('\'', '')
+                    text = text.replace('\"', '')
+
                     self.FB2.text(text)
                 else:
                     x, y, w, h = boxes.xywh.numpy()[n]
@@ -97,13 +106,19 @@ class MainClass:
         return path
 
 def create_fb2_full(path):
-    model = MainClass()
+    fb2_obj = FB2()
     load = Loader(path)
     pages = load.len_pages()
-    for i in range(pages):
-        model.forward(load.forward_jpg())
-        print(i, 'OK')
-    path_fb2 = model.end()
+    model_scan = MainClass(fb2_obj)
+    model_new = ModernPdf(path, fb2_obj)
+    for n in range(pages):
+        if load.is_scan(n):
+            model_scan.forward(load.forward_jpg_n(n))
+            print(n, 'OK_old')
+        else:
+            model_new.forward(load.extract_page(n), n)
+            print(n, 'OK_new')
+    path_fb2 = fb2_obj.end()
     return path_fb2
 
 
@@ -116,4 +131,5 @@ model.forward('my_data/78.jpg')
 model.forward('my_data/79.jpg')
 model.forward('my_data/80.jpg')
 model.end()"""
-create_fb2_full('/home/tor/PycharmProjects/Samsung/pdf_files/Opadchiy.pdf')
+
+# create_fb2_full('pdf_files/2346_removed(1).pdf')

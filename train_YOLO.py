@@ -5,4 +5,4 @@ from PIL import Image
 import pytesseract
 
 model = YOLO("yolov8n.pt")
-model.train(data='my_dt.yaml', epochs=50)  # train the model
+model.train(data='my_dt2.yaml', epochs=100, overlap_mask=False)  # train the model

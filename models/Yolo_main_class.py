@@ -9,6 +9,6 @@ class YOLOClass:
         self.model = YOLO(weight)
 
     def forward(self, image):
-        result = self.model(image)
+        result = self.model(image, iou=0.1, save=True)
         return result
 

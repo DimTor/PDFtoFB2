@@ -1,3 +1,4 @@
-Add_info
-Image
-Text
+add_info
+image
+text
+title
